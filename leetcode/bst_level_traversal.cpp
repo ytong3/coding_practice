@@ -48,3 +48,40 @@ public:
 
 
 //A neater and better solution
+class Solution {
+public:
+    vector<vector<int> > res;
+    vector<vector<int> > levelOrder(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        res.clear();
+        if(!root)
+            return res;
+        BFS(root);
+        return res;
+    }
+    
+    void BFS(TreeNode *root){//note the termination condition.
+        vector<TreeNode*> queue;
+		queue.push_back(root);
+        vector<int> sublist;
+        sublist.clear();
+		vector<TreeNode*> temp;
+        while(queue.size()){
+			temp=queue;
+           	while(queue.size()){
+				sublist.push_back(queue[0]->value);
+				queue.erase(queue.begin());
+			}
+			res.push_back(sublist);
+			sublist.clear();
+			for(int node_num=0;node_num<temp.size();node_num++){
+				if(temp[node_num]->left) queue.push_back(temp[node_num]->left);
+				if(temp[node_num]->right) queue.push_back(temp[node_num]->right);
+			}
+        }
+    }
+    
+};
+
+
