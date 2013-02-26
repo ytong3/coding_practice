@@ -70,7 +70,7 @@ public:
         while(queue.size()){
 			temp=queue;
            	while(queue.size()){
-				sublist.push_back(queue[0]->value);
+				sublist.push_back(queue[0]->val);
 				queue.erase(queue.begin());
 			}
 			res.push_back(sublist);
