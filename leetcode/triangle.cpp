@@ -3,6 +3,7 @@ public:
     int minimumTotal(vector<vector<int> > &triangle) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
+        if(triangle.size()==0) return 0;
         int row_num=triangle.size();
         for(row_num=triangle.size()-2;row_num>=0;row_num--){
             for(int element_num=0;element_num<triangle[row_num].size();element_num++){
