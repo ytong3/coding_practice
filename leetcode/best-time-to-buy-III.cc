@@ -1,3 +1,4 @@
+//a somewhat demonstration of the idea of divide-and-conquer
 class Solution {
 public:
     int maxProfit(vector<int> &prices) {
