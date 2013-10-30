@@ -1,0 +1,1 @@
+Define your own data structure. Do not limit yourself for the fear of space complexity. You can always optimize later if the initial one is not good enough.

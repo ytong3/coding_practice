@@ -3,6 +3,8 @@
 *.lo
 *.o
 *.cpp~
+*.cc
+*.out
 
 # Compiled Dynamic libraries
 *.so

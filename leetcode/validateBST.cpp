@@ -54,3 +54,31 @@ bool IsValidBST(BinaryNode node, int MIN, int MAX)
          return false;
 }
 */
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(!root) return true;
+        return Helper(root,INT_MAX,INT_MIN);
+    }
+    
+    bool Helper(TreeNode *root, int maxNode, int minNode){
+        if(!root) return true;
+        
+        if(root->val>=maxNode) return false;
+        if(root->val<=minNode) return false;
+        
+        return Helper(root->left, root->val, minNode)&&Helper(root->right,maxNode, root->val);
+    }
+};
