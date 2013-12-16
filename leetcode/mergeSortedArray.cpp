@@ -1,6 +1,36 @@
 class Solution {
 public:
     void merge(int A[], int m, int B[], int n) {
+        //fill from the back in A
+        int len=m+n;
+        int iA(m-1),iB(n-1),i(len-1);
+        while(iA>=0&&iB>=0){
+            if(A[iA]>B[iB]){
+                A[i]=A[iA];
+                iA--;
+            }
+            else{
+                A[i]=B[iB];
+                iB--;
+            }
+            i--;
+        }
+        if(iB<0)
+            return;
+        if(iA<0)
+            while(iB>=0){
+                A[i]=B[iB];
+                i--;
+                iB--;
+            }
+        return;
+        
+    }
+};
+/*
+class Solution {
+public:
+    void merge(int A[], int m, int B[], int n) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
     	if(B==NULL) return;
@@ -48,3 +78,4 @@ public:
     		return tail+n;
     }
 };
+*/
