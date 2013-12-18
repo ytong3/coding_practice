@@ -1,19 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <stack>
-using namespace std;
-
- /**  
-  * Definition for binary tree  
-  * struct TreeNode {  
-  *   int val;  
-  *   TreeNode *left;  
-  *   TreeNode *right;  
-  *   TreeNode(int x) : val(x), left(NULL), right(NULL) {}  
-  * };  
-  */  
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
@@ -37,12 +21,17 @@ public:
     }
 };
 
-int main(){
-	Solution mysol;
-    vector<int> res=mysol.getRow(4);
-    for(int i=0;i<res.size();i++){
-        cout<<res[i]<<" ";
+//another very elegant solution using only one array.
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> result(rowIndex+1,0);
+        for(int i=0;i<rowIndex+1;i++){
+            for(int j=i-1;j>0;j--){
+                result[j]=result[j]+result[j-1];
+            }
+            result[i]=1;
+        }
+        return result;
     }
-    cout<<endl;
-}
-		
+};
