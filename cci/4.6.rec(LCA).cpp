@@ -14,3 +14,15 @@ NodeType* findLCA(NodeType* root, NodeType* e1, NodeType* e2)
     if(!lRet) return rRet;
     return lRet;
 }
+
+TreeNode *findLCA(TreeNode *root,TreeNode *n1, TreeNode *n2){
+		if (!root) return NULL;
+		
+		if(root==n1||root==n2) return root;
+		
+		TreeNode *l = findLCA(root->left);
+		if (l&&l!=n1&&l!=n2) return l;
+		TreeNode *r = findLCA(root->right);
+		if (l==NULL) return r;
+		return root;
+}	

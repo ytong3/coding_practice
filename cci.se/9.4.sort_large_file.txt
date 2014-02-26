@@ -1,0 +1,5 @@
+1. in-place external sort.
+2. consider the limit of memory. 2GB may be too big for the memory.
+3. divide the file into K chunks, where the size of each chunk is within the memory limit, X. Bring each chunk into memory and sort the lines as usual using any O(nlogn) algorithm. Save the lines back to the file.
+4. now bring the next chunk into memory and sort.
+5. once we're done, merge them one by one. (N-way merge)

@@ -1,0 +1,5 @@
+Different solutions depending on what information and data structure can you have.
+
+1. divide the array into evenly three sections.
+2. if with the help of advanced data strucutre, it is another story.
+3. pretty much like a memory allocation problem.
