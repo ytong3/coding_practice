@@ -5,33 +5,49 @@
 
 using namespace std;
 
-void serialize_tree(TreeNode* root, vector<char> &output) {
+void serialize_tree(TreeNode* root, vector<string> &output) {
 	//a preorder traveral of subtree root
 	if (!root){
-		output.push_back('#');
+		output.push_back("#");
 		return;
 	}
 	
-	output.push_back('0'+root->val);
+    ostringstream converter;
+    converter<<root->val;
+	output.push_back(converter.str());
 	serialize_tree(root->left,output);
 	serialize_tree(root->right,output);
 }
 
 //we use a reference of a integer here (&index) to let it increment along the way we call the recurring function. Whenever the recurring fucntion is called, index is incremented by 1. and this is what we need.
-TreeNode *deserialize_tree(const vector<char> input, int &index) {
+TreeNode *deserialize_tree(const vector<string> input, int &index) {
 	cout<<index<<" "<<input.size()<<"**"<<endl;
-	if (index>input.size()||input[index]=='#')
+	if (index>input.size()||input[index]=="#")
 		return NULL;
 	
-	char label = input[index];
-	TreeNode *root = new TreeNode(label-'0');
+	auto label = input[index];
+	TreeNode *root = new TreeNode(atoi(label.c_str()));
 	index++;
 	root->left = deserialize_tree(input, index);
 
 	index++;
 	root->right = deserialize_tree(input,index); 
 	return root;
-	//notice that since index is a reference, the index in the 'second' call is not different by 1 to the index in the 'first' call. 
+	//notice that since index is a reference, the index in the 'second' call is not different by 1 to from index in the preceeding 'derserialize_tree'  call. 
+}
+
+TreeNode* deserialization(const vector<string> &input, int &index){
+    if (index==input.size()||input[index]=="#")
+        return NULL;
+    
+    string label = input[index];
+    int valOfLabel = atoi(label.c_str());
+    TreeNode *res = new TreeNode(valOfLabel);
+    index++;
+    res->left = deserialization(input,index);
+    index++;
+    res->right = deserialization(input,index);
+    return res;
 }
 
 void inorder_pre_test(TreeNode *root){
@@ -73,16 +89,16 @@ int main(){
     TreeNode *root = new TreeNode(0);
 	root->left = new TreeNode(-1);
 
-	vector<char> res;
+	vector<string> res;
 	serialize_tree(root,res);
-	for(char i:res) cout<<i<<" ";
+	for(auto i:res) cout<<i<<" ";
 	cout<<endl;
 	int index=0;
 	cout<<"Begin deserializing"<<endl;
 	TreeNode *newroot=	deserialize_tree(res,index);
 	res.clear();
 	serialize_tree(newroot,res);
-	for(char i:res) cout<<i<<" ";
+	for(string i:res) cout<<i<<" ";
 	cout<<endl;
 
 	if(isValidBST(root)){

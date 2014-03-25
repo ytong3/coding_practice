@@ -6,12 +6,14 @@ using namespace std;
 
 string dec2bin(double n){
 	int i = (int) n;
-	string res("");
+    
+    string res("");
 	while (i>0){
 		string ch(1,'0'+i%2);
 		res=ch+res;
 		i/=2;
 	}
+    if(res.size()==0) res.push_back('0');
 
 	
 	double decPart = n - (int)n;
@@ -36,8 +38,9 @@ string dec2bin(double n){
 	}
 	return res;
 }
-/*
+
 int main() {
-	cout<<dec2bin(34.3234)<<endl;
+	cout<<dec2bin(0)<<endl;
+    cout<<dec2bin(2424)<<endl;
 }
-*/
+

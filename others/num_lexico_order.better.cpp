@@ -21,5 +21,5 @@ void print_lexico_order (int num, int N){
 }
 
 int main(){
-	print_lexico_order(11,222);
+	print_lexico_order(1,222);
 }
